@@ -1,9 +1,6 @@
 package com.cine.pagos.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
@@ -14,6 +11,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @Table

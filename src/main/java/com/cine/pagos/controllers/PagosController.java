@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController("pagos")
 public class PagosController {
@@ -37,7 +39,13 @@ public class PagosController {
            return Response.noContent().entity("Socio no existe").build();
        }
        if(responseEntity.getBody().getEstado().equals("1")){
-           return Response.ok().entity(pagosRepository.save(pago)).build();
+
+           return Response.ok().entity(pagosRepository.save(Pago.builder()
+                   .id(UUID.randomUUID())
+                   .dni(pago.getDni())
+                   .fecha(LocalDate.now())
+                   .montoPago(pago.getMontoPago())
+                   .build())).build();
        }else{
            return Response.noContent().entity("Socio Inactivo").build();
        }
